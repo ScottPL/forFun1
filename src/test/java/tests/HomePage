@@ -1,0 +1,52 @@
+package tests;
+
+import org.testng.annotations.Test;
+
+public class HomePage extends tests.BaseTest {
+
+    // Extra information:
+    // 1) @BeforeClass we declared driver and wait variables
+    // 2) We send these driver and wait variables to the page class with below declaration
+    //    Homepage homepage = new HomePage(driver,wait);
+    // 3) super () method in page class transfer the driver and wait variables values to the BasePage class.
+
+    @Test(priority = 0)
+    public void openKlmPageAndConfirmIt() {
+
+        //*************PAGE INSTANTIATIONS*************
+        pages.HomePage homePage = new pages.HomePage(driver, wait);
+
+        //*************PAGE METHODS********************
+        //Open KLM HomePage
+        homePage.goToKLM();
+
+        //Accept Cookies
+        homePage.acceptCookies();
+
+        //Check if page is KLM
+        homePage.checkKlmLogo();
+
+    }
+
+    @Test(priority = 1)
+    public void settingLocationAndPageLanguage() {
+
+        //*************PAGE INSTANTIATIONS*************
+        pages.HomePage homePage = new pages.HomePage(driver, wait);
+
+        //*************PAGE METHODS********************
+
+        // Open Drop-Downe
+        homePage.openDropDownCountry();
+
+
+        //Set your country
+        homePage.setYourCountry();
+
+        //Set your language
+        homePage.setYourLanguages();
+
+        //Set your language
+        homePage.setYourLanguages();
+    }
+}
