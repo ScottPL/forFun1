@@ -1,9 +1,14 @@
+@Login
 Feature: LoginFeature
   Login to Engage Console
 
   Scenario: Login with correct username and password for Console configured with Reporting.
-    Given I navigate to Engage Console login page
-    And I enter the username
-    And I enter the password
+    Given I navigate to Engage Console login page for particular "<Tenant>" and "<Enviro>"
+    And I enter "<UserName>" and "<Password>"
     And I click login button
-    Then I should be directed to Reporting page
+    Then I should a Reporting page should be displayed
+
+    Examples:
+  Examples:
+  | Enviro  | Tenant      | UserName          | Password |
+  | stable  | engage1     | engage1-admin     | Test1234 |
