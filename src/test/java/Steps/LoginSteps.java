@@ -1,6 +1,8 @@
 package Steps;
 
+import Pages.BasePage;
 import Pages.LoginPage;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -12,7 +14,6 @@ public class LoginSteps {
     // DEPENDENCIES
 
     private WebDriver driver;
-    private LoginPage loginPage;
 
     @Autowired
     private void setDriver(WebDriver driver) {
@@ -30,10 +31,9 @@ public class LoginSteps {
 
 public class LoginSteps {
 
-    @Given("^I navigate to Engage Console login page for particular \"([^\"]*)\" and \"([^\"]*)\"$")
-    public void iNavigateToEngageConsoleLoginPageForParticularAnd(String arg0, String arg1)
-            throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+    @Given("^I navigate to Engage Console login page$")
+    public void iNavigateToEngageConsoleLoginPage() throws Throwable {
+        driver.get(baseURL);
         throw new PendingException();
     }
 
