@@ -3,20 +3,19 @@ package Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class LoginPage extends BasePage {
 
     // CONSTRUCTOR
-        public LoginPage (WebDriver driver, WebDriverWait wait) {
-            super(driver, wait);
+        public LoginPage (WebDriver driver) {
+            super(driver);
     }
 
     // VARIABLES, LOCATORS
 
-    @FindBy(className = "col-md-4 col-md-offset-4 logo")
-    public WebElement theTdlLogo;
+    @FindBy(css = "div[class='col-md-4 col-md-offset-4 logo']")
+    private WebElement theTdlLogo;
 
     @FindBy(id = "username")
     private WebElement usernameInput;
@@ -29,6 +28,7 @@ public class LoginPage extends BasePage {
 
     String baseUrl = "https://engage1.stable-cw.product.mttnow.com/mcw/#/login";
     String reportingPageUrl = "https://engage1.stable-cw.product.mttnow.com/mcw/#/engage/reporting";
+    String expectedLogoUrl = "url(\"https://engage1.stable-cw.product.mttnow.com/mcw/src/img/common-img/logo@2x.png\n)";
 
     // METHODS
 
@@ -37,12 +37,16 @@ public class LoginPage extends BasePage {
         driver.get(baseUrl);
     }
 
+    public String getExpectedLogoUrl() {
+        return expectedLogoUrl;
+    }
+
     //Check the page is TDL by its logo's url
-    public void checkTdlLogo(WebElement theTdlLogo) {
-        this.theTdlLogo = theTdlLogo;
-        String logoText = theTdlLogo.getText();
-        Assert.assertEquals(logoText,
-                "https://engage1.stable-cw.product.mttnow.com/mcw/src/img/common-img/logo@2x.png");
+    public String getTdlLogoText() {
+        theTdlLogo.click();
+        return theTdlLogo.getCssValue("background-image");
+
+//        Assert.assertEquals(logoText, expectedLogoText);
     }
 
     //Input username
