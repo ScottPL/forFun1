@@ -1,8 +1,6 @@
 package Steps;
 
-import Pages.BasePage;
 import Pages.LoginPage;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -13,45 +11,51 @@ public class LoginSteps {
 
     // DEPENDENCIES
 
-    private WebDriver driver;
+    public WebDriver driver;
 
     @Autowired
     private void setDriver(WebDriver driver) {
         this.driver = driver;
     }
 
-    @Autowired
-    private void setLoginPage(LoginPage loginPage) {
-        this.loginPage = loginPage;
-    }
-
     // VARIABLES, LOCATORS
 
     // private Properties globalProperties = PropertiesUtil.loadGlobalProperties();
 
-public class LoginSteps {
 
-    @Given("^I navigate to Engage Console login page$")
-    public void iNavigateToEngageConsoleLoginPage() throws Throwable {
-        driver.get(baseURL);
-        throw new PendingException();
+    @Given("^I open Engage Console login page$")
+    public void iOpenEngageConsoleLoginPage() {
+        LoginPage webElement = new LoginPage();
+        webElement.openPage();
     }
 
-    @And("^I enter \"([^\"]*)\" and \"([^\"]*)\"$")
-    public void iEnterAnd(String arg0, String arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @And("I check if TDL logo exist$")
+    public void iCheckIfTdlLogoExist() {
+        LoginPage webElement = new LoginPage();
+        webElement.checkTdlLogo();
+    }
+
+    @And("^I enter username \"([^\"]*)\"$")
+    public void iEnterUsername(String arg0) {
+        LoginPage webElement = new LoginPage();
+        webElement.inputUsername(arg0);
+    }
+
+    @And("^I enter password \"([^\"]*)\"$")
+    public void iEnterPassword(String arg0) {
+        LoginPage webElement = new LoginPage();
+        webElement.inputPassword(arg0);
     }
 
     @And("^I click login button$")
-    public void iClickLoginButton() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void iClickLoginButton() {
+        LoginPage webElement = new LoginPage();
+        webElement.clickLoginButton();
     }
 
-    @Then("^I should a Reporting page should be displayed$")
-    public void iShouldAReportingPageShouldBeDisplayed() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @Then("^A Reporting page should be displayed$")
+    public void iShouldAReportingPageShouldBeDisplayed() {
+        LoginPage webElement = new LoginPage();
+        webElement.checkReportingPage();
     }
 }

@@ -3,12 +3,9 @@ Feature: LoginFeature
   Login to Engage Console
 
   Scenario: Login with correct username and password for Console configured with Reporting.
-    Given I navigate to Engage Console login page
-    And I enter "<UserName>" and "<Password>"
+    Given I open Engage Console login page
+    And I check if TDL logo exist
+    And I enter username "<engage1-admin>"
+    And I enter password "<Test1234>"
     And I click login button
-    Then I should a Reporting page should be displayed
-
-    Examples:
-  Examples:
-  | Enviro  | Tenant      | UserName          | Password |
-  | stable  | engage1     | engage1-admin     | Test1234 |
+    Then A Reporting page should be displayed

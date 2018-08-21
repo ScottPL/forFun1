@@ -3,7 +3,7 @@
 <suite name="Suite"  >
   <test name="ChoosingLanguage">
     <classes>
-      <class name="tests.HomePage"/>
+      <class name="test.Feature.Login.feature"/>
     </classes>
   </test>
 </suite>
