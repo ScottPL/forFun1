@@ -3,12 +3,12 @@ package Pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 public class LoginPage extends BasePage {
 
     // CONSTRUCTOR
         public LoginPage (WebDriver driver) {
+
             super(driver);
     }
 
@@ -27,8 +27,7 @@ public class LoginPage extends BasePage {
     private WebElement loginButton;
 
     String baseUrl = "https://engage1.stable-cw.product.mttnow.com/mcw/#/login";
-    String reportingPageUrl = "https://engage1.stable-cw.product.mttnow.com/mcw/#/engage/reporting";
-    String expectedLogoUrl = "url(\"https://engage1.stable-cw.product.mttnow.com/mcw/src/img/common-img/logo@2x.png\n)";
+    String expectedLogoUrl = "url(\"https://engage1.stable-cw.product.mttnow.com/mcw/src/img/common-img/logo@2x.png\")";
 
     // METHODS
 
@@ -45,31 +44,31 @@ public class LoginPage extends BasePage {
     public String getTdlLogoText() {
         theTdlLogo.click();
         return theTdlLogo.getCssValue("background-image");
-
-//        Assert.assertEquals(logoText, expectedLogoText);
     }
 
-    //Input username
-    public void inputUsername(WebElement usernameInput) {
-        this.usernameInput = usernameInput;
-        usernameInput.sendKeys("username");
+    public void inputUsername(String user) {
+        usernameInput.sendKeys(user);
     }
 
     //Input password
-    public void inputPassword(WebElement passwordInput) {
-        this.passwordInput = passwordInput;
-        passwordInput.sendKeys("password");
+    public void inputPassword(String password) {
+        passwordInput.sendKeys(password);
     }
 
     //Click Login button
-    public void clickLoginButton (WebElement loginButton) {
-        this.loginButton = loginButton;
+    public void clickLoginButton () {
         loginButton.click();
     }
 
-    //Check if Reporting page was displayed
-    public void checkReportingPage (String reportingPageUrl){
-        this.reportingPageUrl = reportingPageUrl;
-        Assert.assertEquals(reportingPageUrl, "https://engage1.stable-cw.product.mttnow.com/mcw/#/engage/reporting");
+    //Waiting for different URL then login page
+    public void waitForUrlToChange () {
+        for (int i=0; i<=5; i++) {
+           if (driver.getCurrentUrl().equals(baseUrl)) {
+               hardWait(1);
+            }
+            else {
+               break;
+           }
+        }
     }
 }

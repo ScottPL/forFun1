@@ -1,8 +1,10 @@
 package Steps;
 
+import Pages.BasePage;
 import Pages.LoginPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
@@ -10,11 +12,12 @@ public class LoginSteps {
 
     // CONSTRUCTOR
 
-    public LoginSteps(WebDriver driver) {
-        this.driver = driver;
+    public LoginSteps(BasePage basePage) {
+        driver = basePage.getDriver();
+        loginPage = new LoginPage(driver);
     }
 
-    public WebDriver driver;
+    private WebDriver driver;
     private LoginPage loginPage;
 
     // VARIABLES, LOCATORS
@@ -35,35 +38,22 @@ public class LoginSteps {
         Assert.assertEquals(actualLogoUrl, expectedLogoUrl, "Expected and actual logo urls are different.");
     }
 
-//    @And("^I enter username \"([^\"]*)\"$")
-//    public void iEnterUsername(String username) {
-////        if(arg0.equals("admin")) {
-////
-////        }else if(arg0.equals("readonly")) {
-////
-////        }
-//        LoginPage webElement = new LoginPage();
-//        webElement.inputUsername(username);
-//    }
-//
-//    @And("^I enter password \"([^\"]*)\"$")
-//    public void iEnterPassword(String password) {
-//        LoginPage webElement = new LoginPage();
-//        webElement.inputPassword(password);
-//    }
-//
-//    @And("^I click login button$")
-//    public void iClickLoginButton() {
-//        LoginPage webElement = new LoginPage();
-//        webElement.clickLoginButton();
-//    }
-//
-//    @Then("^A Reporting page should be displayed$")
-//    public void iShouldAReportingPageShouldBeDisplayed() {
-//        LoginPage webElement = new LoginPage();
-//        webElement.checkReportingPage();
-//    }
-//
+    @And("^I enter username \"([^\"]*)\"$")
+    public void iEnterUsername(String username) {
+        loginPage.inputUsername(username);
+    }
+
+    @And("^I enter password \"([^\"]*)\"$")
+    public void iEnterPassword(String password) {
+        loginPage.inputPassword(password);
+    }
+
+    @When("^I click login button$")
+    public void iClickLoginButton() {
+        loginPage.clickLoginButton();
+        loginPage.waitForUrlToChange();
+    }
+
 //    @Given("^I log in$")
 //    public void iLogIn () {
 //        iOpenEngageConsoleLoginPage();
