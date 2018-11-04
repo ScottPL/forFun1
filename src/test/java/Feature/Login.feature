@@ -9,10 +9,10 @@ Feature: LoginFeature
     And I enter password "<password>"
     When I click login button
     Then A Reporting page should be displayed
-    And I can see 7 in top menu
+    And I can see 5 in top menu
 
 
     Examples:
-      | user          | password | numbOfTopMenuItems |
-      | engage1-admin | Test1234 | 7                  |
+      | user              | password | numbOfTopMenuItems |
+      | engagecore1-admin | Test1234 | 7                  |
 #      | read-only     | Test1234 | 3                  |

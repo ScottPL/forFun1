@@ -19,7 +19,7 @@ public class ReportingPage extends BasePage{
 
 //  VARIABLES
 
-    String reportingPageUrl = "https://engage1.stable-cw.product.mttnow.com/mcw/#/engage/reporting";
+    String reportingPageUrl = "https://engagecore1.stable-cw.product.mttnow.com/mcw/#/engage/reporting";
 
    private void waitForPageElements() {
         wait.until(ExpectedConditions.visibilityOf(reportName));

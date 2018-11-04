@@ -26,8 +26,8 @@ public class LoginPage extends BasePage {
     @FindBy(id = "login-submit")
     private WebElement loginButton;
 
-    String baseUrl = "https://engage1.stable-cw.product.mttnow.com/mcw/#/login";
-    String expectedLogoUrl = "url(\"https://engage1.stable-cw.product.mttnow.com/mcw/src/img/common-img/logo@2x.png\")";
+    String baseUrl = "https://engagecore1.stable-cw.product.mttnow.com/mcw/#/login";
+    String expectedLogoUrl = "url(\"https://engagecore1.stable-cw.product.mttnow.com/mcw/src/img/common-img/logo@2x.png\")";
 
     // METHODS
 
