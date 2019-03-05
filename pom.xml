@@ -107,6 +107,14 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Configure nexus server in maven settings before adding this dependency -->
+    <dependency>
+      <groupId>com.mttnow.message.campaign</groupId>
+      <artifactId>message-campaign-web</artifactId>
+      <version>1.7.9</version>
+      <type>zip</type>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -129,6 +137,49 @@
           <suiteXmlFiles>
             <suiteXmlFile>TestNG.xml</suiteXmlFile>
           </suiteXmlFiles>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>TestNG.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+
+      <!-- https://maven.apache.org/plugins/maven-dependency-plugin/examples/unpacking-artifacts.html -->
+      <!-- Unzip archive: mvn dependency:unpack -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
+        <configuration>
+          <artifactItems>
+            <artifactItem>
+              <groupId>com.mttnow.message.campaign</groupId>
+              <artifactId>message-campaign-web</artifactId>
+              <version>1.7.9</version>
+              <type>zip</type>
+              <overWrite>true</overWrite>
+            </artifactItem>
+          </artifactItems>
+          <includes>**/*.json</includes>
+          <excludes>**/*.html,**/*.css,**/*.js,**/*.png,**/*.map,**/*.svg</excludes>
+          <outputDirectory>${project.basedir}/src/test/resources/unzipped</outputDirectory>
         </configuration>
       </plugin>
 
