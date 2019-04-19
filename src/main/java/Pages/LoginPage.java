@@ -15,7 +15,7 @@ public class LoginPage extends BasePage {
     // VARIABLES, LOCATORS
 
     @FindBy(className = "app-header-logo")
-    private WebElement theRoryLogo;
+    private WebElement theRoryLogo; 
 
 //    @FindBy(id = "username")
 //    private WebElement usernameInput;
