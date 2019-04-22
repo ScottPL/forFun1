@@ -4,61 +4,66 @@ import Pages.BasePage;
 import Pages.LoginPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class LoginSteps {
 
-    // CONSTRUCTOR
+  // CONSTRUCTOR
 
-    public LoginSteps(BasePage basePage) {
-        driver = basePage.getDriver();
-        loginPage = new LoginPage(driver);
-    }
+  public LoginSteps(BasePage basePage) {
+    driver = basePage.getDriver();
+    loginPage = new LoginPage(driver);
+  }
 
-    private WebDriver driver;
-    private LoginPage loginPage;
+  private WebDriver driver;
+  private LoginPage loginPage;
 
-    // VARIABLES, LOCATORS
-    // private Properties globalProperties = PropertiesUtil.loadGlobalProperties();
+  // VARIABLES, LOCATORS
 
+  @Given("^I open Rory page for online visit$")
+  public void iOpenRoryPageForOnlineVisit() {
+    loginPage = new LoginPage(driver);
+    loginPage.openPage();
+  }
 
-    @Given("^I open Rory page for online visit$")
-    public void iOpenRoryPageForOnlineVisit() {
-        loginPage = new LoginPage(driver);
-        loginPage.openPage();
-    }
+  @And("I check if Rory logo exist$")
+  public void iCheckIfRoryLogoExist() {
+    String actualLogoUrl = loginPage.getLogoSrc();
+    String expectedLogoSrc = loginPage.getExpectedLogoSrc();
+    Assert.assertEquals(actualLogoUrl, expectedLogoSrc,
+        "Expected and actual logo src are different.");
+  }
 
-    @And("I check if Rory logo exist$")
-    public void iCheckIfRoryLogoExist() {
-        String actualLogoUrl = loginPage.getLogoSrc();
-        String expectedLogoUrl = loginPage.getExpectedLogoUrl();
-        Assert.assertEquals(actualLogoUrl, expectedLogoUrl, "Expected and actual logo urls are different.");
+  @And("^I enter email \"([^\"]*)\"$")
+  public void iEnterEmailAddress(String email) {
+    loginPage.inputEmailAddress(email);
+  }
 
-    }
-//
-//    @And("^I enter username \"([^\"]*)\"$")
-//    public void iEnterUsername(String username) {
-//        loginPage.inputUsername(username);
-//    }
-//
-//    @And("^I enter password \"([^\"]*)\"$")
-//    public void iEnterPassword(String password) {
-//        loginPage.inputPassword(password);
-//    }
-//
-//    @When("^I click login button$")
-//    public void iClickLoginButton() {
-//        loginPage.clickLoginButton();
-//        loginPage.waitForUrlToChange();
-//    }
+  @And("^I enter first name \"([^\"]*)\"$")
+  public void iEnterFirstName(String firstname) {
+    loginPage.inputFirstName(firstname);
+  }
 
-//    @Given("^I log in$")
-//    public void iLogIn () {
-//        iOpenEngageConsoleLoginPage();
-//        iEnterUsername(String arg0);
-//        iEnterPassword(String arg0);
-//        iClickLoginButton();
-//        iShouldAReportingPageShouldBeDisplayed();
-//    }
+  @And("^I enter last name \"([^\"]*)\"$")
+  public void iEnterLastName(String lastname) {
+    loginPage.inputLastName(lastname);
+  }
+
+  @And("^I enter password \"([^\"]*)\"$")
+  public void iEnterPassword(String password) {
+    loginPage.inputPassword(password);
+  }
+
+  @And("^I mark terms, privacy policy and consent of Telehealth$")
+  public void iMarkRequiredTermsAndPolices() {
+    loginPage.setTermsAndConditions();
+  }
+
+  @When("^I click Start My Visit button$")
+  public void iClickLoginButton() {
+    loginPage.clickStartVisitButton();
+    loginPage.waitForUrlToChange();
+  }
 }

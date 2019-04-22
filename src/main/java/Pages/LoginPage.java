@@ -15,19 +15,28 @@ public class LoginPage extends BasePage {
     // VARIABLES, LOCATORS
 
     @FindBy(className = "app-header-logo")
-    private WebElement theRoryLogo; 
+    private WebElement theRoryLogo;
 
-//    @FindBy(id = "username")
-//    private WebElement usernameInput;
-//
-//    @FindBy(id = "password")
-//    private WebElement passwordInput;
-//
-//    @FindBy(id = "login-submit")
-//    private WebElement loginButton;
+    @FindBy(id = "temporaryEmail")
+    private WebElement emailInput;
+
+    @FindBy(id = "firstName")
+    private WebElement firstNameInput;
+
+    @FindBy(id = "lastName")
+    private WebElement lastNameInput;
+
+    @FindBy(id = "password")
+    private WebElement passwordInput;
+
+    @FindBy(className = "checkbox-label")
+    private WebElement termsAndConditionsCheckBox;
+
+    @FindBy(className = "button--primary")
+    private WebElement startVisitButton;
 
     String baseUrl = "https://start.ro.co/rory/vaginal-dryness";
-    String expectedLogoUrl = "data:image/svg+xml,%3Csvg width='69' height='14' "
+    String expectedLogoSrc = "data:image/svg+xml,%3Csvg width='69' height='14' "
         + "viewBox='0 0 69 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E "
         + "%3Cpath d='M57.0296 13.9751H60.2813L68.2007 0H64.949L61.304 6.43624L56.8985 "
         + "0H53.4895L59.7568 9.17997L57.0296 13.9751Z' fill='%23DDADA6'/%3E "
@@ -55,13 +64,13 @@ public class LoginPage extends BasePage {
 
     // METHODS
 
-    //Go to Login page
+    //Go to online visit page
     public void openPage() {
         driver.get(baseUrl);
     }
 
-    public String getExpectedLogoUrl() {
-        return expectedLogoUrl;
+    public String getExpectedLogoSrc() {
+        return expectedLogoSrc;
     }
 
     //Check the page is Rory by its logo's src
@@ -69,29 +78,41 @@ public class LoginPage extends BasePage {
         return theRoryLogo.getAttribute("src");
     }
 
-//    public void inputUsername(String user) {
-//        usernameInput.sendKeys(user);
-//    }
-//
-//    //Input password
-//    public void inputPassword(String password) {
-//        passwordInput.sendKeys(password);
-//    }
-//
-//    //Click Login button
-//    public void clickLoginButton () {
-//        loginButton.click();
-//    }
-//
-//    //Waiting for different URL then login page
-//    public void waitForUrlToChange () {
-//        for (int i=0; i<=5; i++) {
-//           if (driver.getCurrentUrl().equals(baseUrl)) {
-//               hardWait(1);
-//            }
-//            else {
-//               break;
-//           }
-//        }
-//    }
+    //Provide consecutive input data
+    public void inputEmailAddress(String email) {
+        emailInput.sendKeys(email);
+    }
+
+    public void inputFirstName(String firstname) {
+        firstNameInput.sendKeys(firstname);
+    }
+
+    public void inputLastName(String lastname) {
+        lastNameInput.sendKeys(lastname);
+    }
+
+    public void inputPassword(String password) {
+        passwordInput.sendKeys(password);
+    }
+
+    public void setTermsAndConditions() {
+        termsAndConditionsCheckBox.click();
+    }
+
+    //Click start visit button
+    public void clickStartVisitButton () {
+        startVisitButton.click();
+    }
+
+    //Waiting for different URL then online visit start page
+    public void waitForUrlToChange () {
+        for (int i=0; i<=5; i++) {
+           if (driver.getCurrentUrl().equals(baseUrl)) {
+               hardWait(1);
+            }
+            else {
+               break;
+           }
+        }
+    }
 }
