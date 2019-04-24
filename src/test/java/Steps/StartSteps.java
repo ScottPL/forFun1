@@ -1,69 +1,69 @@
 package Steps;
 
 import Pages.BasePage;
-import Pages.LoginPage;
+import Pages.StartPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class LoginSteps {
+public class StartSteps {
 
   // CONSTRUCTOR
 
-  public LoginSteps(BasePage basePage) {
+  public StartSteps(BasePage basePage) {
     driver = basePage.getDriver();
-    loginPage = new LoginPage(driver);
+    startPage = new StartPage(driver);
   }
 
   private WebDriver driver;
-  private LoginPage loginPage;
+  private StartPage startPage;
 
   // VARIABLES, LOCATORS
 
-  @Given("^I open Rory page for online visit$")
+  @Given("^I open Rory start page for online visit$")
   public void iOpenRoryPageForOnlineVisit() {
-    loginPage = new LoginPage(driver);
-    loginPage.openPage();
+    startPage = new StartPage(driver);
+    startPage.openPage();
   }
 
-  @And("I check if Rory logo exist$")
+  @And("I check if double-picture exist$")
   public void iCheckIfRoryLogoExist() {
-    String actualLogoUrl = loginPage.getLogoSrc();
-    String expectedLogoSrc = loginPage.getExpectedLogoSrc();
-    Assert.assertEquals(actualLogoUrl, expectedLogoSrc,
+    String actualLogoSrc = startPage.getCurrentLogoSrc();
+    String expectedLogoSrc = startPage.getExpectedLogoSrc();
+    Assert.assertEquals(actualLogoSrc, expectedLogoSrc,
         "Expected and actual logo src are different.");
   }
 
   @And("^I enter email \"([^\"]*)\"$")
   public void iEnterEmailAddress(String email) {
-    loginPage.inputEmailAddress(email);
+    startPage.inputEmailAddress(email);
   }
 
   @And("^I enter first name \"([^\"]*)\"$")
   public void iEnterFirstName(String firstname) {
-    loginPage.inputFirstName(firstname);
+    startPage.inputFirstName(firstname);
   }
 
   @And("^I enter last name \"([^\"]*)\"$")
   public void iEnterLastName(String lastname) {
-    loginPage.inputLastName(lastname);
+    startPage.inputLastName(lastname);
   }
 
   @And("^I enter password \"([^\"]*)\"$")
   public void iEnterPassword(String password) {
-    loginPage.inputPassword(password);
+    startPage.inputPassword(password);
   }
 
-  @And("^I mark terms, privacy policy and consent of Telehealth$")
+  @And("^I mark terms, privacy policy and consent of Telehealth checkbox$")
   public void iMarkRequiredTermsAndPolices() {
-    loginPage.setTermsAndConditions();
+    startPage.setTermsAndConditions();
   }
 
   @When("^I click Start My Visit button$")
   public void iClickLoginButton() {
-    loginPage.clickStartVisitButton();
-    loginPage.waitForUrlToChange();
+    startPage.clickStartVisitButton();
+    startPage.waitForUrlToChange();
   }
 }

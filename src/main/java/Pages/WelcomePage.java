@@ -5,11 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class OnlineVisitPage extends BasePage {
+public class WelcomePage extends BasePage {
 
 //    CONSTRUCTOR
 
-  public OnlineVisitPage(WebDriver driver) {
+  public WelcomePage(WebDriver driver) {
     super(driver);
     waitForPageElements();
   }
@@ -17,14 +17,13 @@ public class OnlineVisitPage extends BasePage {
   @FindBy(className = "start-subtitle")
   private WebElement movie;
 
-  String onlineVisitPageUrl = "https://start.ro.co/rory/vaginal-dryness/online-visit/10";
+  String welcomePageUrl = "https://start.ro.co/rory/vaginal-dryness/online-visit/10";
 
   private void waitForPageElements() {
     wait.until(ExpectedConditions.visibilityOf(movie));
-
   }
 
-  public String getExpectedOnlineVisitPageUrl() {
-    return onlineVisitPageUrl;
+  public String getExpectedWelcomePageUrl() {
+    return welcomePageUrl;
   }
 }

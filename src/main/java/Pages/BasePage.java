@@ -14,17 +14,13 @@ public class BasePage {
 
     // CONSTRUCTOR
 
-    //This is package-private
     BasePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
-        wait = new WebDriverWait(driver, 10);
+        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 11), this);
+        wait = new WebDriverWait(driver, 11);
     }
 
-    //Must be a public cause it is used in InitSteps, so have to be accessible.
-    public BasePage() {
-
-    }
+    public BasePage() {}
 
     public void setDriver(WebDriver driver) {
         this.driver = driver;

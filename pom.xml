@@ -12,12 +12,6 @@
 
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-chrome-driver</artifactId>
-      <version>3.13.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>3.13.0</version>
     </dependency>
@@ -94,25 +88,12 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>6.14.3</version>
-    </dependency>
 
     <dependency>
       <groupId>info.cukes</groupId>
       <artifactId>cucumber-picocontainer</artifactId>
       <version>1.2.5</version>
       <scope>test</scope>
-    </dependency>
-
-    <!-- Configure nexus server in maven settings before adding this dependency -->
-    <dependency>
-      <groupId>com.mttnow.message.campaign</groupId>
-      <artifactId>message-campaign-web</artifactId>
-      <version>1.7.9</version>
-      <type>zip</type>
     </dependency>
 
   </dependencies>
@@ -158,28 +139,6 @@
           <suiteXmlFiles>
             <suiteXmlFile>TestNG.xml</suiteXmlFile>
           </suiteXmlFiles>
-        </configuration>
-      </plugin>
-
-      <!-- https://maven.apache.org/plugins/maven-dependency-plugin/examples/unpacking-artifacts.html -->
-      <!-- Unzip archive: mvn dependency:unpack -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.1.1</version>
-        <configuration>
-          <artifactItems>
-            <artifactItem>
-              <groupId>com.mttnow.message.campaign</groupId>
-              <artifactId>message-campaign-web</artifactId>
-              <version>1.7.9</version>
-              <type>zip</type>
-              <overWrite>true</overWrite>
-            </artifactItem>
-          </artifactItems>
-          <includes>**/*.json</includes>
-          <excludes>**/*.html,**/*.css,**/*.js,**/*.png,**/*.map,**/*.svg</excludes>
-          <outputDirectory>${project.basedir}/src/test/resources/unzipped</outputDirectory>
         </configuration>
       </plugin>
 
